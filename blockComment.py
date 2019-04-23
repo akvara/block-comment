@@ -16,6 +16,7 @@ import requests
 
 
 def block_comment(comment_id):
+    url = 'https://www.skelbiu.lt/index.php?mod=ajax&action=blockComment'
     headers = {
         'origin': 'https://www.skelbiu.lt',
         'accept-encoding': 'gzip, deflate, br',
@@ -28,8 +29,9 @@ def block_comment(comment_id):
         'cookie': '__gfp_64b=FyjRDmUPT7gB3pkKOA_KTWTrRJykmbo2pshuu2E0Q0H.17; _ga=GA1.2.483995729.1474046446; PHPSESSID=nhembbqt59r77vq14bnbmse0du; _gid=GA1.2.840082006.1556031888; rememberMe=79052995cbf291ddc8901.81470885; __gads=ID=d4135f616f6f28c6:T=1556031779:S=ALNI_MZV1T43KWTva9PmzuSIMHb4F5AwMQ; fbShareShow40265827=1; _gat=1; _gat_master=1',
     }
 
-    data = {"blockComment": comment_id}
+    data = {"blockComment": str(comment_id)}
 
-    response = requests.post('https://hooks.slack.com/services/asdfasdfasdf', headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
 
+    return response.status_code
     # print(response.status_code)
