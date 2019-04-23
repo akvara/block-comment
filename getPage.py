@@ -1,5 +1,6 @@
 import re
 from urllib.request import urlopen
+
 from bs4 import BeautifulSoup
 
 
@@ -13,4 +14,3 @@ def get_page():
     comment_block = soup.find('div', attrs={'class': 'comment'})
     m = re.search('data-id="([0-9]+)', str(comment_block))
     return m.group(1) if m else None
-

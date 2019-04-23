@@ -1,21 +1,33 @@
+import sys
 import time
-from getPage import get_page
-from blockComment import block_comment
 from datetime import datetime
 
+from blockComment import block_comment
+from getPage import get_page
 
 start_time = time.time()
+# interval = 60 * 10
+minutes = 1
 
-while True:
-    print("{} Getting page ...".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-    comment_id = get_page()
-    if comment_id:
-        res = block_comment(comment_id)
-        if res == 200:
-            print('Comment {} deleted'.format(comment_id))
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        minutes = int(sys.argv[1])
+        print("Interval {} min.".format(minutes)
+
+    while True:
+        sys.stdout.write("{} Getting page ... ".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+        comment_id = get_page()
+        if comment_id:
+            res = block_comment(comment_id)
+            if res == 200:
+                sys.stdout.write('comment {} deleted'.format(comment_id))
+                interval = 20
+            else:
+                sys.stdout.write('could not delete: status code {}'.format(res))
         else:
-            print('Could not delete: status code {}'.format(res))
-    else:
-        print('No comments')
+            sys.stdout.write('no comments')
+            interval = 60 * minutes
 
-    time.sleep(600.0 - ((time.time() - start_time) % 600.0))
+        sys.stdout.write('.\n')
+        sys.stdout.flush()
+        time.sleep(interval - ((time.time() - start_time) % interval))
