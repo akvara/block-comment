@@ -1,9 +1,9 @@
 import time
 from getPage import get_page
 from blockComment import block_comment
-import requests
 
 start_time = time.time()
+
 while True:
     print("Getting page ...")
     comment_id = get_page()
