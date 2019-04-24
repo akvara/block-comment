@@ -6,13 +6,13 @@ from blockComment import block_comment
 from getPage import get_page
 
 start_time = time.time()
-# interval = 60 * 10
 minutes = 1
+interval = 60
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         minutes = int(sys.argv[1])
-        print("Interval {} min.".format(minutes)
+        print("Interval {} min.".format(minutes))
 
     while True:
         sys.stdout.write("{} Getting page ... ".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
